@@ -1,0 +1,498 @@
+### 1.用户接口：
+
+#### 1.1自提点接口：
+
+```java
+@RestController
+@RequestMapping("address")
+public class AddressController {
+    
+    // 添加自提点
+    @RequestMapping("addnew")
+	public JsonResult<Void> addAddress(Address address, HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+    // 显示自提点列表
+    @GetMapping({"","/"})
+	public JsonResult<List<Address>> showAddressList(HttpSession session) {
+	    
+		return new JsonResult<>();
+	}
+    
+    // 修改自提点
+   @PutMapping("update")
+	public JsonResult<Void> updateAddress(Address address, HttpSession session)	{
+		
+		return new JsonResult<>();
+	}
+     
+    // 设置默认自提点
+    @PutMapping("{aid}/set_default")
+	public JsonResult<Void> setDefaultAddress(@PathVariable("aid") Integer aid, HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+    // 删除自提点
+    @DeleteMapping("{aid}/delete")
+	public JsonResult<Void> deleteAddress(@PathVariable("aid") Integer aid, HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+}
+```
+
+#### 1.2购物车接口：
+
+```java
+@RestController
+@RequestMapping("cart")
+public class CartController {
+    
+    // 添加商品到购物车
+    @RequestMapping("add")
+    public JsonResult<Void> addProductToCart(Integer pid, Integer amount, HttpSession session) {
+
+        return new JsonResult<>();
+    }
+
+    // 显示购物车列表
+    @GetMapping({ "", "/" })
+    public JsonResult<List<VO>> showCartList(HttpSession session) {
+
+        return new JsonResult<>();
+    }
+    
+    // 增加商品数量
+    @PutMapping("{cid}/num/add")
+	public JsonResult<Integer> addProductNum(@PathVariable("cid") Integer cid, HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+    // 减少商品数量
+    @PutMapping("{cid}/num/reduce")
+	public JsonResult<Integer> reduceProductNum(@PathVariable("cid") Integer cid, HttpSession session) {
+		
+		return new JsonResult<>(OK, newNum);
+	}
+    
+    // 删除购物车中商品
+    @DeletetMapping("{cid}/delete")
+	public JsonResult<Void> deleteProductFromCart(@PathVariable("cid")Integer cid, HttpSession session){
+		
+		return new JsonResult<>();
+	}
+    
+}
+```
+
+### 2.商家接口：
+
+#### 2.1商家个人接口：
+
+```java
+@RestController
+@RequestMapping("merchant")
+public class MerchantControlle {
+
+    // 商家注册
+	@PostMapping("reg")
+	public JsonResult<Void> reg(Merchant merchant) {
+		
+		return new JsonResult<>();
+	}
+    
+	// 商家登录
+	@PostMapping("login")
+	public JsonResult<Merchant> login(String merchantName, String password, HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+    // 商家修改密码
+    @PostMapping("password/change")
+	public JsonResult<Void> changePassword(String oldPassword, String newPassword, HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+}
+```
+
+#### 2.2商品定位接口：
+
+```java
+@RestController
+@RequestMapping("product")
+public class ProductController {
+    
+    // 添加商品、设置商品类别
+    @RequestMapping("addnew")
+	public JsonResult<Void> addProduct(Product product, ProductCategory productCategory HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+    // 显示商品列表
+    @GetMapping({"","/"})
+    public JsonResult<List<Product>> showProductList(HttpSession session) {
+
+        return new JsonResult<>();
+    }
+    
+    
+    // 修改商品
+    @PutMapping("update")
+	public JsonResult<Void> updateProduct(Product product, HttpSession session) {
+		
+		return new JsonResult<>();
+    }
+ 	
+    // 下架商品
+    @DeleteMapping("{pid}/down_shelf")
+	public JsonResult<Void> downProduct(@PathVariable("pid") Integer pid, HttpSession session) {
+		
+		return new JsonResult<>();
+    }  
+    
+}                  
+```
+
+#### 2.3商品详情接口：
+
+```java
+@RestController
+@RequestMapping("product_detail")
+public class ProductDetailController {
+    
+    // 添加商品详情
+    @RequestMapping("addnew")
+	public JsonResult<Void> addProductDetail(ProductDetail productDetail, HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+    // 查看商品详情
+    @GetMapping("{pid}")
+    public JsonResult<ProductDetail> showProductDetail(@PathVariable("pid") Integer pid, HttpSession session) {
+
+        return new JsonResult<>();
+    }
+    
+    // 修改商品详情
+    @PutMapping("update")
+	public JsonResult<Void> updateProductDetail(ProductDetail productDetail, HttpSession session) {
+		
+		return new JsonResult<>();
+    }
+    
+    // 删除商品详情
+    @DeleteMapping("{pid}/delete")
+	public JsonResult<Void> deleteProductDetail(@PathVariable("pid") Integer pid, HttpSession session) {
+		
+		return new JsonResult<>();
+    } 
+    
+}
+```
+
+#### 2.4商品入库接口：
+
+```java
+@RestController
+@RequestMapping("product_in_library")
+public class ProductInLibraryController {
+    
+    // 添加商品入库
+    @RequestMapping("addnew")
+	public JsonResult<Void> addProductInLibrary(ProductInLibrary productInLibrary, HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+    // 显示单个商品入库记录
+    @GetMapping("{pid}")
+    public JsonResult<ProductInLibrary> showOneProductInLibrary(@PathVariable("pid") Integer pid, HttpSession session) {
+
+        return new JsonResult<>();
+    }
+    
+    // 显示所有商品入库列表
+    @GetMapping({"","/"})
+    public JsonResult<List<ProductInLibrary>> showAllProductInLibraryList(HttpSession session) {
+
+        return new JsonResult<>();
+    }
+    
+    // 修改商品入库
+    @PutMapping("update")
+	public JsonResult<Void> updateProductInLibrary(ProductInLibrary productInLibrary, HttpSession session) {
+		
+		return new JsonResult<>();
+    }
+    
+    // 删除商品入库
+    @DeleteMapping("{pid}/delete")
+	public JsonResult<Void> deleteProductInLibrary(@PathVariable("pid") Integer pid, HttpSession session) {
+		
+		return new JsonResult<>();
+    }
+      
+}
+```
+
+#### 2.5商品期限接口：
+
+```java
+@RestController
+@RequestMapping("product_date")
+public class ProductDateController {
+    
+    // 添加商品期限
+    @RequestMapping("addnew")
+	public JsonResult<Void> addProductDate(ProductDate productDate, Integer pid, HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+    // 查看单个商品期限
+    @GetMapping("{pid}")
+    public JsonResult<ProductDetail> showOneProductDate(@PathVariable("pid") Integer pid, HttpSession session) {
+
+        return new JsonResult<>();
+    }
+    
+    // 查看所有商品期限列表
+    @GetMapping({"","/"})
+    public JsonResult<List<ProductDetail>> showAllProductDateList(HttpSession session) {
+
+        return new JsonResult<>();
+    }
+    
+    // 修改商品期限
+    @PutMapping("update")
+	public JsonResult<Void> updateProductDate(ProductDate productDate, HttpSession session) {
+		
+		return new JsonResult<>();
+    }
+    
+    // 删除商品期限
+    @DeleteMapping("{pid}/delete")
+	public JsonResult<Void> deleteProductInLibrary(@PathVariable("pid") Integer pid, HttpSession session) {
+		
+		return new JsonResult<>();
+    }
+}
+```
+
+#### 2.6商品库存接口：
+
+```java
+@RestController
+@RequestMapping("product_inventory")
+public class ProductInventoryController {
+    
+    // 添加商品库存
+    @RequestMapping("addnew")
+	public JsonResult<Void> addProductInventory(ProductInventory productInventory, Integer pid, HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+    // 查看单个商品库存
+    @GetMapping("{pid}")
+    public JsonResult<ProductDetail> showOneProductInventory(@PathVariable("pid") Integer pid, HttpSession session) {
+
+        return new JsonResult<>();
+    }
+    
+    // 查看所有商品库存列表
+    @GetMapping({"","/"})
+    public JsonResult<List<ProductDetail>> showAllProductInventoryList(HttpSession session) {
+
+        return new JsonResult<>();
+    }
+    
+    // 修改商品库存
+    @PutMapping("update")
+	public JsonResult<Void> updateProductInventory(ProductInventory productInventory, HttpSession session) {
+		
+		return new JsonResult<>();
+    }
+    
+    // 删除商品库存
+    @DeleteMapping("{pid}/delete")
+	public JsonResult<Void> deleteProductInventory(@PathVariable("pid") Integer pid, HttpSession session) {
+		
+		return new JsonResult<>();
+    }
+    
+    
+}
+```
+
+#### 2.7商品促销接口：
+
+```java
+@RestController
+@RequestMapping("product_promotion")
+public class ProductPromotionController {
+	
+    // 添加商品降价
+    @RequestMapping("product_reduce_price/addnew")
+	public JsonResult<Void> addProductReducePrice(ProductReducePrice productReducePrice, HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+    // 查看商品降价
+    @GetMapping("{pid}/product_reduce_price")
+    public JsonResult<ProductReducePrice> showOneProductReducePrice(@PathVariable("pid") Integer pid, HttpSession session) {
+
+        return new JsonResult<>();
+    }
+    
+    // 删除商品降价
+    @DeleteMapping("{pid}/product_reduce_price/delete")
+	public JsonResult<Void> deleteProductReducePrice(@PathVariable("pid") Integer pid, HttpSession session) {
+		
+		return new JsonResult<>();
+    }
+    
+    // 添加商品优惠券
+    @RequestMapping("product_coupons/addnew")
+	public JsonResult<Void> addProductReducePrice(ProductCoupons productCoupons, HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+    // 查看商品优惠券
+    @GetMapping("{pid}/product_coupons")
+    public JsonResult<ProductCoupons> showOneProductCoupons(@PathVariable("pid") Integer pid, HttpSession session) {
+
+        return new JsonResult<>();
+    }
+    
+    // 删除商品优惠券
+    @DeleteMapping("{pid}/product_coupons/delete")
+	public JsonResult<Void> deleteProductCoupons(@PathVariable("pid") Integer pid, HttpSession session) {
+		
+		return new JsonResult<>();
+    }
+    
+}
+
+```
+
+
+
+#### 2.8商品出库接口：
+
+```java
+@RestController
+@RequestMapping("product_out_library")
+public class ProductOutLibraryController {
+    
+    // 添加商品出库
+    @RequestMapping("addnew")
+	public JsonResult<Void> addProductOutLibrary(ProductOutLibrary productOutLibrary, HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+    // 显示单个商品出库记录
+    @GetMapping("{pid}")
+    public JsonResult<ProductInLibrary> showOneProductOutLibrary(@PathVariable("pid") Integer pid, HttpSession session) {
+
+        return new JsonResult<>();
+    }
+    
+    // 显示所有商品出库列表
+    @GetMapping({"","/"})
+    public JsonResult<List<ProductInLibrary>> showAllProductOutLibraryList(HttpSession session) {
+
+        return new JsonResult<>();
+    }
+    
+    // 修改商品出库
+    @PutMapping("update")
+	public JsonResult<Void> updateProductOutLibrary(ProductOutLibrary productOutLibrary, HttpSession session) {
+		
+		return new JsonResult<>();
+    }
+    
+    // 删除商品出库
+    @DeleteMapping("{pid}/delete")
+	public JsonResult<Void> deleteProductOutLibrary(@PathVariable("pid") Integer pid, HttpSession session) {
+		
+		return new JsonResult<>();
+    }
+    
+    
+}
+```
+
+### 3.订单接口：
+
+```java
+@RestController
+@RequestMapping("order")
+public class OrderController {
+
+    // 生成订单（从购物车中）
+	@RequestMapping("cart/create")
+	public JsonResult<Order> createOrderByCart(Integer aid, Integer[] cids, HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+    // 生成订单（直接购买）
+	@RequestMapping("product/create")
+	public JsonResult<Order> createOrderByProduct(Integer aid, HttpSession session) {
+		
+		return new JsonResult<>();
+	}
+    
+    // 查看单个订单
+    @GetMapping("{oid}")
+    public JsonResult<Order> showOneOrder(@PathVariable("oid")Integer oid, HttpSession session) {
+
+        return new JsonResult<>();
+    }
+    
+    // 查看所有订单
+    @GetMapping({"","/"})
+    public JsonResult<List<Order>> showAllOrderList(HttpSession session) {
+
+        return new JsonResult<>();
+    }
+    
+    // 删除订单
+    @DeleteMapping("{oid}/delete")
+	public JsonResult<Void> deleteOrder(@PathVariable("oid")Integer oid, HttpSession session){
+		
+		return new JsonResult<>();
+	}
+    
+    // 修改订单状态
+    @PutMapping("{oid}/status/update")
+	public JsonResult<Void> updateOrderStatus(@PathVariable("oid")Integer oid, Integer status, HttpSession session){
+		
+		return new JsonResult<>();
+	}
+    
+    // 修改订单信息
+    @PutMapping("info/update")
+	public JsonResult<Void> updateOrderInfo(Order order, HttpSession session){
+		
+		return new JsonResult<>();
+	}
+    
+}
+```
+
+### 
